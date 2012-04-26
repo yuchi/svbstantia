@@ -2,6 +2,11 @@
 html
 	head
 		title Test
+		//-link(rel="stylesheet",href="/assets/style.css")
+		!= css('/css/look.css')
 	body
-		h1!= document.title
-		h2!= document.lead
+		article.main
+			h1!= document.title
+			if document.lead != null
+				p.lead!= document.lead
+			!= content
