@@ -1,1 +1,1 @@
-module.exports = require( './lib/svbstance' );
+var Svbstance = module.exports = require( './lib/svbstance' );
