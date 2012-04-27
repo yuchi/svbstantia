@@ -1,8 +1,6 @@
-!!!5
-html
-	head
-		title Test
-	body
-		ul
-			each document in documents
-				li: a(href='/'+document.name)!= document.title
+extends layout
+
+block content
+	ul.list
+		each document in documents
+			li: a(href='/'+document.name)!= document.title

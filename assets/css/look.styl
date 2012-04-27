@@ -1,15 +1,51 @@
 
 @import 'nib';
+@import 'mixins';
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+Chosen = 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+
+crimson-red = #c83c52
+teal-blue = #0096a2
 
 body
 	background #eee
+	font-family Chosen
 
-.main
-	//max-width 500px
+::selection
+	background crimson-red
+	color white
+
+a:link
+a:visited
+	color teal-blue
+
+#wrapper
+	max-width 700px
 	padding 10px
-	border 2px solid #ddd
-	margin 10px
+	margin 10px auto
 	color #444
+
+	h1
+		margin 0
+		font-size 30px
+		font-weight normal
+		color crimson-red
+
+	section h1
+		margin 1em 0 0.5em
+		font-size 25px
+
+	section section h1
+		font-size 20px
+
+	.lead
+		border-color crimson-red
+		border-width 2px 0
+		border-style solid none
+		margin 1em 0 2em
+		padding 0.5em
 
 	strong
 		font-weight normal
@@ -20,21 +56,21 @@ body
 		background rgba(yellow, 0.3)
 
 	pre
-		margin 1em -12px
+		margin 1em 0
 		padding 10px
-		border-color #bbb
-		border-width 0px 2px
-		border-style none solid
 		background #ddd
 		overflow auto
+		scroller #ddd
+		/*
+		background \
+			linear-gradient(white 30%, rgba(255,255,255,0)), \
+			linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, \
+			radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)), \
+			radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%
+		*/
 
-	h1
-		font-size 30px
-		margin 0 0 1em
-		border-bottom 2px solid #ddd
+		/* Opera doesn't support this in the shorthand */
+		background-attachment: local, local, scroll, scroll;
 
-	section h1
-		font-size 25px
-
-	section section h1
-		font-size 20px
+		> code
+			display block
