@@ -1,6 +1,17 @@
 extends layout
 
 block content
-	ul.list
+	.list
 		each document in documents
-			li: a(href='/'+document.name)!= document.title
+			article(id=document._id)
+				a(href='/'+document.name)
+					- var updated = document.updated_at || document.published_at;
+					- var published = document.published_at;
+					- var time = published || updated;
+					p.published
+						span Published
+						=' '
+						time(datetime=time.unix())= time.fromNow()
+					h1= document.title
+					if document.lead
+						p.lead= document.lead

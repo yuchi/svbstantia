@@ -1,8 +1,21 @@
 extends layout
 
+block footer
+	nav.lateral
+		each doc in documents
+			- var classname = doc._id == document._id ? 'selected' : '';
+			a(href='/'+doc.name, class=classname)
+				span.title= doc.title
+
 block content
-	article.main
-		h1!= document.title
-		if document.lead != null
-			p.lead!= document.lead
+	article.single
+		header
+			- var updated = document.updated_at || document.published_at;
+			- var published = document.published_at;
+			- var time = published || updated;
+			p.published
+				time(datetime=time.unix())= time.calendar()
+			h1.title!= document.title
+			if document.lead != null
+				p.lead!= document.lead
 		!= content

@@ -1,4 +1,6 @@
 
+@charset "UTF-8";
+
 @import 'nib';
 @import 'mixins';
 
@@ -9,7 +11,12 @@ Chosen = 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 crimson-red = #c83c52
 teal-blue = #0096a2
 
+fast = 200ms
+slow = 600ms
+
 body
+	margin 0
+	padding 0
 	background #eee
 	font-family Chosen
 
@@ -21,56 +28,242 @@ a:link
 a:visited
 	color teal-blue
 
+.sec
+	counter-reset section
+
+.sec h1:after
+	counter-increment section
+	content "[" counters(section, ".") "]"
+	margin 0 1ex
+	color #999
+	display inline-block
+
+
+#header
+	padding 1em 0
+	margin 0 1em 1em
+
+	h1
+		margin 0
+		font-weight normal
+		font-size 15px
+
+		a
+			display block
+			color inherit
+			text-decoration	none
+
+			.single &:after
+				content ' ↩'
+				color crimson-red
+
+			&:hover
+				color #777
+
+
 #wrapper
-	max-width 700px
+	max-width 740px
 	padding 10px
 	margin 10px auto
 	color #444
 
-	h1
-		margin 0
-		font-size 30px
-		font-weight normal
-		color crimson-red
+	.list
+		article
 
-	section h1
-		margin 1em 0 0.5em
-		font-size 25px
+			a
+				transition background fast
+				padding 1em
+				display block
+				text-decoration none
+				color inherit
 
-	section section h1
-		font-size 20px
+			h1
+				transition color fast, border-color fast
+				font-weight normal
+				color crimson-red
+				font-size 20px
+				margin 0 0 1ex
+				padding 0 0 1ex
+				border-bottom 2px solid crimson-red
 
-	.lead
-		border-color crimson-red
-		border-width 2px 0
-		border-style solid none
-		margin 1em 0 2em
-		padding 0.5em
+			.published
+				float right
+				margin 7px 0 0
+				font-size 12px
+				line-height 20px
 
-	strong
-		font-weight normal
-		color black
+				@media screen and (max-width: 450px)
+					span
+						display none
 
-	em
-		font-style normal
-		background rgba(yellow, 0.3)
+			.lead
+				transition color fast
+				margin 0
+				padding 0
+				font-size 15px
 
-	pre
-		margin 1em 0
-		padding 10px
-		background #ddd
+			a
+				h1
+					color crimson-red
+				.lead
+					color inherit
+
+			a:hover
+				background crimson-red
+
+				h1
+					color white
+					border-color @color
+				.lead
+					color white
+
+
+	.single
+		padding 1em
+
+		.published
+			float right
+			margin-left 1ex
+
+		h1
+			margin 0
+			font-size 30px
+			font-weight normal
+			color crimson-red
+
+		section h1
+			padding 0
+			margin 1em 0 0.5em
+			font-size 25px
+
+		section section h1
+			font-size 20px
+
+		.title
+		.lead
+			border-bottom 2px solid crimson-red
+
+		.title
+			padding 0 0 0.5em
+
+		.lead
+			/*
+			border-color crimson-red
+			border-width 2px 0
+			border-style solid none
+			*/
+			margin 0 0 2em
+			padding 0.5em
+
+		strong
+			font-weight normal
+			color black
+
+		em
+			font-style italic
+
+			em
+				font-style italic
+				color #333
+
+		a
+			&:link
+			&:visited
+				border-radius 2px
+				background rgba(teal-blue, 0.1)
+				text-decoration none
+
+			&:visited
+				color darken(teal-blue, 10)
+
+			&:hover
+				background teal-blue
+				color #eee
+
+		img
+			max-width 100%
+			height auto !important
+
+		pre
+			margin 1em 0
+			padding 10px
+			background #ddd
+			overflow auto
+			scroller #ddd
+			/*
+			background \
+				linear-gradient(white 30%, rgba(255,255,255,0)), \
+				linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, \
+				radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)), \
+				radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%
+
+			// Opera doesn't support this in the shorthand
+			background-attachment: local, local, scroll, scroll;
+			*/
+
+			> code
+				display block
+
+
+#footer
+
+	position relative
+	margin 1em
+	border-top 2px solid crimson-red
+	padding 1em 0 0
+
+	.powered
+		background #eee
+		z-index 10
+		margin 1em 0 0
+		padding 0.5em 0 1.5em
+		bottom 0px
+		left 0px
+		right 0px
+		border-top 1px solid #777
+		color #777
+		font-size 12px
+
+	.lateral
+		font-size 12px
+		a, span
+			display inline
+			text-decoration none
+
+		a span
+			color #444
+
+		a.selected span
+			color #999
+
+		@media screen and (max-width: 1200px)
+			a + a:before
+				content ' • '
+
+	@media screen and (min-width: 1200px)
 		overflow auto
-		scroller #ddd
-		/*
-		background \
-			linear-gradient(white 30%, rgba(255,255,255,0)), \
-			linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, \
-			radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)), \
-			radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%
-		*/
+		position fixed
+		width 200px
+		top 0px
+		right 50%
+		margin 0
+		margin-right 390px
+		padding-top 60px
+		bottom 0px
+		border-top 0px none
+		border-right 1px solid crimson-red
+		z-index 9
 
-		/* Opera doesn't support this in the shorthand */
-		background-attachment: local, local, scroll, scroll;
+		.lateral
+			a
+				display block
+				padding 1ex
+				color inherit
+				span
+					color inherit
 
-		> code
-			display block
+			a.selected
+				background crimson-red
+				color #eee
+				span
+					color inherit
