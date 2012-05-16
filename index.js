@@ -1,3 +1,4 @@
 var Svbstantia = module.exports = require( './lib/svbstantia' );
 
-var instance = Svbstantia.create( {}, function () {} );
+// Example use
+//var instance = Svbstantia.create( {}, function () {} );
