@@ -1,11 +1,18 @@
 !!!xml
 rss(version="2.0")
 	channel
-		title!= title
-		description!= config.description
+		title= title
+		link= config.baseURL
+		description= config.description
+		language= config.language.toLowerCase()
+		managingEditor= config.author
+		webMaster= config.author.full
 
 		each document in documents
 			item
 				title= document.title
+				link= config.baseURL + '/' + document.name
+				author= config.author.full
 				if document.lead
 					description= document.lead
+				pubDate= (document.published_at || document.updated_at).format('ddd, D MMM YYYY HH:mm:ss ZZ')
