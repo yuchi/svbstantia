@@ -1,17 +1,23 @@
 extends layout
 
 block content
+	- var has_content = false
 	.list
 		each document in documents
-			article(id=document._id)
-				a(href='/'+document.name)
-					- var updated = document.updated_at || document.published_at;
-					- var published = document.published_at;
-					- var time = published || updated;
-					p.published
-						span Published
-						=' '
-						time(datetime=time.unix())= time.fromNow()
-					h1= document.title
-					if document.lead
-						p.lead= document.lead
+			- var updated = document.updated_at || document.published_on;
+			- var published = document.published_on;
+			- var time = published || updated;
+			if published
+				- has_content = true
+				article(id=document._id)
+					a(href='/'+document.name)
+						p.published
+							span Published
+							=' '
+							time(datetime=time.unix())= published.fromNow()
+						h1= document.title
+						if document.lead
+							p.lead= document.lead
+
+	unless has_content
+		p.no-articles No articles to show
