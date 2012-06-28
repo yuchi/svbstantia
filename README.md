@@ -35,7 +35,7 @@ information.
     app: {
       port: port
     },
-    ga: "<< your Google Analyctics TM token >>"
+    ga: "<< your Google Analytics TM token >>"
   }, function () {
     console.log( "Cool! Svbstantia started listening on port " + port );
   });
