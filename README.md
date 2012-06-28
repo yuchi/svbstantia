@@ -34,7 +34,8 @@ information.
     username: "<< your Substance.io username >>",
     app: {
       port: port
-    }
+    },
+    ga: "<< your Google Analyctics TM token >>"
   }, function () {
     console.log( "Cool! Svbstantia started listening on port " + port );
   });
