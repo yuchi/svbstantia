@@ -3,8 +3,10 @@
   "name": "svbstantia",
   "description": "Simple substance-powered Node.js blog platform",
   "version": "0.0.6",
+  "homepage": "https://github.com/yuchi/svbstantia",
   "repository": {
-    "url": ""
+	"type": "git",
+    "url": "https://github.com/yuchi/svbstantia"
   },
   "main": "index.js",
   "engines": {
